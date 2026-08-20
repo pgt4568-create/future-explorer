@@ -1,0 +1,6 @@
+{
+  "name": "위인과 함께하는 나의 미래 탐험대",
+  "description": "다양한 위인들의 생애를 체험하는 인생게임, 진로 성찰 워크시트, 10년 후 미래 아바타 꾸미기 및 진로 카드/리포트 공유 앱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
