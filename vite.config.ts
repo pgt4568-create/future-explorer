@@ -5,6 +5,9 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // GitHub Pages는 저장소 이름(/future-explorer/) 아래에서 서비스됩니다.
+    // Vercel/로컬에서는 루트(/)를 사용합니다.
+    base: process.env.GITHUB_ACTIONS === 'true' ? '/future-explorer/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
