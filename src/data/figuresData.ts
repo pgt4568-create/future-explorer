@@ -17,6 +17,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#FEF3C7',
     avatarIcon: '👑',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/King_Sejong_the_Great_monument.jpg/480px-King_Sejong_the_Great_monument.jpg',
+    photoSearchQuery: 'King Sejong the Great portrait Korea',
     summary: '조선의 황금기를 이끈 성군으로, 백성들이 쉽게 글을 읽고 쓸 수 있도록 훈민정음을 창제하고 장영실 등 인재를 신분 차별 없이 등용해 과학기술과 문화를 꽃피웠습니다.',
     stages: [
       {
@@ -28,6 +29,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'ancient_library',
         illustrationKey: 'sejong_reading',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Sejong_Portrait.jpg/400px-Sejong_Portrait.jpg',
+        realPhotoSearchQuery: 'King Sejong the Great portrait Korea',
         realPhotoDescription: '국립고궁박물관 소장 세종대왕 표준 어진(영정)',
         funFact: '세종대왕은 마음에 드는 책은 무려 100번 넘게 읽는 ‘백독백습(百讀百習)’을 실천한 독서광이었어요.',
         choices: [
@@ -61,6 +63,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'palace_hall',
         illustrationKey: 'sejong_jangyeongsil',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Jagyeongnu_restoration.jpg/500px-Jagyeongnu_restoration.jpg',
+        realPhotoSearchQuery: 'Jagyeongnu water clock Joseon Korea',
         realPhotoDescription: '국립고궁박물관 복원 자격루(물시계) - 장영실의 발명품',
         funFact: '장영실은 노비였지만 세종대왕의 파격적인 지지로 종3품 대호군(고위 관직)까지 올랐어요.',
         choices: [
@@ -94,6 +97,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'fortress_border',
         illustrationKey: 'sejong_4gun6jin',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Joseon_Map_15c.jpg/480px-Joseon_Map_15c.jpg',
+        realPhotoSearchQuery: 'Joseon dynasty northern border map Sejong 15th century',
         realPhotoDescription: '4군 6진 개척으로 완성된 조선의 북방 국경 지도',
         funFact: '세종대왕 때 개척한 4군 6진 덕분에 오늘날 한반도의 압록강-두만강 국경선이 완성되었어요.',
         choices: [
@@ -127,6 +131,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'village_people',
         illustrationKey: 'sejong_vote',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Chugugi_National_Treasure.jpg/440px-Chugugi_National_Treasure.jpg',
+        realPhotoSearchQuery: 'Chugugi rain gauge Joseon Korea',
         realPhotoDescription: '농민의 강우량 측정을 위해 보급된 금영 측우기 (국보)',
         funFact: '세종 12년(1430년), 무려 17만 2,806명의 백성을 대상으로 5개월간 대규모 여론조사를 실시했어요.',
         choices: [
@@ -160,6 +165,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'hunminjeongeum_room',
         illustrationKey: 'sejong_hangul',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Hunminjeongeum_haeryebon.jpg/500px-Hunminjeongeum_haeryebon.jpg',
+        realPhotoSearchQuery: 'Hunminjeongeum Haerye Korean alphabet manuscript',
         realPhotoDescription: '간송미술관 소장 훈민정음 해례본 원본 (국보 및 유네스코 세계기록유산)',
         funFact: '훈민정음은 만든 사람과 창제 원리, 사용법이 명확히 기록된 전 세계 유일무이한 문자입니다.',
         choices: [
@@ -203,6 +209,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#E0F2FE',
     avatarIcon: '🛡️',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Yi_Sun-sin_Portrait.jpg/440px-Yi_Sun-sin_Portrait.jpg',
+    photoSearchQuery: 'Yi Sun-sin portrait Korea',
     summary: '임진왜란에서 23전 23승 무패의 신화를 쓰며 바다를 지켜 나라를 구한 명장. 철저한 준비정신으로 거북선을 만들고 명량대첩의 기적을 이뤄냈습니다.',
     stages: [
       {
@@ -214,6 +221,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'exam_ground',
         illustrationKey: 'yisunsin_horse',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Nanjung_Ilgi_National_Treasure.jpg/480px-Nanjung_Ilgi_National_Treasure.jpg',
+        realPhotoSearchQuery: 'Yi Sun-sin portrait Korea',
         realPhotoDescription: '현충사 소장 이순신 친필 난중일기 (국보 및 유네스코 세계기록유산)',
         funFact: '이순신은 4년 후 다시 무과에 도전해 당당히 합격하며 불굴의 뚝심을 증명했어요.',
         choices: [
@@ -247,6 +255,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'barracks_tree',
         illustrationKey: 'yisunsin_tree',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Geobukseon_Model.jpg/500px-Geobukseon_Model.jpg',
+        realPhotoSearchQuery: 'Nanjung Ilgi Yi Sun-sin diary',
         realPhotoDescription: '전쟁기념관 복원 철갑 거북선 실물 모형',
         funFact: '이순신은 원칙을 지키느라 승진에서 번번이 누락되었지만, 청렴하고 바른 성품으로 유명해졌어요.',
         choices: [
@@ -280,6 +289,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'dockyard_turtle',
         illustrationKey: 'yisunsin_turtle',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Hansan_Island_Jeseungdang.jpg/500px-Hansan_Island_Jeseungdang.jpg',
+        realPhotoSearchQuery: 'Geobukseon turtle ship Korea reconstruction',
         realPhotoDescription: '한산도 제승당 - 이순신 장군이 삼도수군을 지휘하던 본부',
         funFact: '거북선에서 대포를 시험 발사한 바로 다음 날, 실제로 왜군이 쳐들어오며 임진왜란이 일어났어요!',
         choices: [
@@ -313,6 +323,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'sea_battle_crane',
         illustrationKey: 'yisunsin_crane',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Chungmusa_Tongyeong.jpg/500px-Chungmusa_Tongyeong.jpg',
+        realPhotoSearchQuery: 'Battle of Hansan Island Yi Sun-sin',
         realPhotoDescription: '통영 충렬사 - 삼도수군통제영의 사당',
         funFact: '한산도 대첩은 살라미스 해전, 칼레 해전, 트라팔가르 해전과 함께 세계 4대 해전으로 꼽혀요.',
         choices: [
@@ -346,6 +357,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'myeongnyang_whirlpool',
         illustrationKey: 'yisunsin_myeongnyang',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Uldolmok_whirlpool.jpg/480px-Uldolmok_whirlpool.jpg',
+        realPhotoSearchQuery: 'Myeongnyang Strait Uldolmok Korea',
         realPhotoDescription: '울돌목(명량 해협)의 거센 소용돌이 조류',
         funFact: '이순신은 울돌목의 좁은 지형과 빠른 조류(바닷물 흐름)의 변화를 치밀하게 계산해 싸웠어요.',
         choices: [
@@ -389,6 +401,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#EDE9FE',
     avatarIcon: '🧪',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Marie_Curie_c._1920s.jpg/440px-Marie_Curie_c._1920s.jpg',
+    photoSearchQuery: 'Marie Curie portrait photograph',
     summary: '폴란드 출신의 위대한 과학자로 여성 최초로 노벨 물리학상과 노벨 화학상을 모두 수상했습니다. 피치블렌드 원석을 정제하여 폴로늄과 라듐을 발견하고 의학 발전에 기여했습니다.',
     stages: [
       {
@@ -400,6 +413,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'secret_classroom',
         illustrationKey: 'curie_secret_school',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Marie_Curie_1898.jpg/400px-Marie_Curie_1898.jpg',
+        realPhotoSearchQuery: 'Marie Curie young 1890',
         realPhotoDescription: '청년 시절 소르본 대학교 유학 시절의 마리 퀴리',
         funFact: '마리와 언니 브로니아는 서로의 유학비를 벌어주기 위해 가정교사 일을 번갈아 가며 도왔어요.',
         choices: [
@@ -433,6 +447,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'cold_lab_flask',
         illustrationKey: 'curie_pitchblende',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Pierre_and_Marie_Curie.jpg/480px-Pierre_and_Marie_Curie.jpg',
+        realPhotoSearchQuery: 'Marie Curie Pierre Curie laboratory',
         realPhotoDescription: '파리 연구실에서 함께 연구하는 피에르 퀴리와 마리 퀴리 부부',
         funFact: '마리 퀴리는 무려 8톤의 광석을 손수 끓이고 저어 단 0.1g의 순수 염화라듐을 추출해 냈어요!',
         choices: [
@@ -466,6 +481,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'radium_glow',
         illustrationKey: 'curie_patent',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Solvay_conference_1927.jpg/500px-Solvay_conference_1927.jpg',
+        realPhotoSearchQuery: 'Marie Curie radium laboratory',
         realPhotoDescription: '1927년 솔베이 회의 - 아인슈타인 등 세계 최고 석학들과 함께한 마리 퀴리',
         funFact: '마리 퀴리의 특허 포기 덕분에 전 세계 병원에서 라듐을 이용한 암 방사선 치료법이 빠르게 보급되었어요.',
         choices: [
@@ -499,6 +515,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'war_xray_car',
         illustrationKey: 'curie_little_curie',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Marie_Curie_in_mobile_X-ray_car.jpg/500px-Marie_Curie_in_mobile_X-ray_car.jpg',
+        realPhotoSearchQuery: 'Marie Curie X-ray car',
         realPhotoDescription: '제1차 세계대전 전선에서 이동식 X선 차량(리틀 퀴리)을 직접 운전하는 마리 퀴리',
         funFact: '마리 퀴리는 직접 운전면허와 자동차 정비 기술을 배워 18대의 X선 차량을 이끌고 100만 명이 넘는 부상병을 치료했어요.',
         choices: [
@@ -532,6 +549,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'radium_institute',
         illustrationKey: 'curie_nobel_chem',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Marie_Curie_Nobel_portrait.jpg/440px-Marie_Curie_Nobel_portrait.jpg',
+        realPhotoSearchQuery: 'Marie Curie 1911 portrait',
         realPhotoDescription: '1911년 노벨 화학상 수상 기념 공식 초상 사진',
         funFact: '마리 퀴리의 딸 이렌 졸리오퀴리와 사위 프레데리크 역시 1935년 노벨 화학상을 수상하여 세계 유일의 노벨상 가문이 되었어요.',
         choices: [
@@ -575,6 +593,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#FDF2F8',
     avatarIcon: '🏰',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Walt_Disney_1946.jpg/440px-Walt_Disney_1946.jpg',
+    photoSearchQuery: 'Walt Disney portrait photograph',
     summary: '미키 마우스를 창조하고 세계 최초의 유성 만화영화, 풀컬러 장편 애니메이션(백설공주)을 제작하였으며, 온 가족이 함께 즐기는 디즈니랜드를 건설했습니다.',
     stages: [
       {
@@ -586,6 +605,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'hollywood_train',
         illustrationKey: 'disney_train',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Walt_Disney_drawing_Mickey.jpg/500px-Walt_Disney_drawing_Mickey.jpg',
+        realPhotoSearchQuery: 'Walt Disney 1921 photograph',
         realPhotoDescription: '스케치북에 미키 마우스를 그리는 젊은 날의 월트 디즈니',
         funFact: '월트 디즈니는 파산 후 헐리우드로 가는 기차 안에서 종이와 연필 하나만 들고 새 애니메이션을 구상했어요.',
         choices: [
@@ -619,6 +639,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'mickey_sketch',
         illustrationKey: 'disney_mickey',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Steamboat_Willie_1928.jpg/500px-Steamboat_Willie_1928.jpg',
+        realPhotoSearchQuery: 'Walt Disney Mickey Mouse 1931',
         realPhotoDescription: '1928년 세계 최초의 유성 만화영화 <증기선 윌리> 포스터',
         funFact: '원래 이름은 \'모티머 마우스\'였지만, 아내 릴리안이 너무 거만해 보인다며 친근한 \'미키 마우스\'로 바꾸자고 제안했어요.',
         choices: [
@@ -652,6 +673,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'snow_white_studio',
         illustrationKey: 'disney_snow_white',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Walt_Disney_with_Snow_White_Oscars.jpg/500px-Walt_Disney_with_Snow_White_Oscars.jpg',
+        realPhotoSearchQuery: 'Walt Disney Shirley Temple Oscars 1939',
         realPhotoDescription: '아카데미상에서 <백설공주>로 1개의 큰 오스카상과 7개의 작은 오스카 트로피를 받은 월트 디즈니',
         funFact: '월트는 집까지 담보로 잡혀 150만 달러(당시 엄청난 거액)를 쏟아부었지만, 영화 개봉 후 당시 영화 역사상 최고 흥행 기록을 세웠어요.',
         choices: [
@@ -685,6 +707,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'disneyland_castle',
         illustrationKey: 'disney_castle',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Walt_Disney_Disneyland_Opening_1955.jpg/500px-Walt_Disney_Disneyland_Opening_1955.jpg',
+        realPhotoSearchQuery: 'Walt Disney Disneyland 1955',
         realPhotoDescription: '1955년 캘리포니아 디즈니랜드 개장일 연설하는 월트 디즈니',
         funFact: '1955년 7월 17일 문을 연 캘리포니아 디즈니랜드는 개장 7주 만에 100만 명의 방문객을 돌파했어요.',
         choices: [
@@ -728,6 +751,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#FEF3C7',
     avatarIcon: '💡',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Thomas_Edison2.jpg/440px-Thomas_Edison2.jpg',
+    photoSearchQuery: 'Thomas Edison portrait photograph',
     summary: '백열전구의 상용화, 축음기, 영사기(키네토스코프) 등 1,000개가 넘는 발명품을 개발하여 인류의 밤을 밝히고 소리와 영상을 기록하는 시대를 열었습니다.',
     stages: [
       {
@@ -739,6 +763,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'basement_lab',
         illustrationKey: 'edison_egg',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Young_Thomas_Edison.jpg/400px-Young_Thomas_Edison.jpg',
+        realPhotoSearchQuery: 'Thomas Edison young',
         realPhotoDescription: '전신 기사로 일하던 10대 청년 시절의 토머스 에디슨',
         funFact: '에디슨의 어머니 낸시는 교사 출신으로, 아들의 남다른 호기심을 인정하고 집 지하실에 실험실을 차려주었어요.',
         choices: [
@@ -772,6 +797,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'phonograph_room',
         illustrationKey: 'edison_phonograph',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edison_and_phonograph_edit2.jpg/480px-Edison_and_phonograph_edit2.jpg',
+        realPhotoSearchQuery: 'Thomas Edison phonograph 1878',
         realPhotoDescription: '1878년 직접 발명한 틴포일 축음기(소리 재생기)를 시연하는 토머스 에디슨',
         funFact: '에디슨이 축음기에 대고 최초로 녹음하고 재생한 말은 동요 "메리에게는 작은 어린 양이 있었네"였어요.',
         choices: [
@@ -805,6 +831,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'lightbulb_lab',
         illustrationKey: 'edison_bulb',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Edison_carbon_filament_bulb.jpg/400px-Edison_carbon_filament_bulb.jpg',
+        realPhotoSearchQuery: 'Thomas Edison incandescent light bulb Menlo Park',
         realPhotoDescription: '1879년 에디슨이 발명한 탄화 대나무 필라멘트 백열전구',
         funFact: '에디슨은 전 세계에서 수집한 6,000여 가지 식물 중 일본 교토의 대나무를 태운 탄소 필라멘트로 1,200시간 이상 켜지는 전구를 개발했어요.',
         choices: [
@@ -848,6 +875,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#D1FAE5',
     avatarIcon: '🌿',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Jane_Goodall_2015.jpg/440px-Jane_Goodall_2015.jpg',
+    photoSearchQuery: 'Jane Goodall portrait photograph',
     summary: '아프리카 탄자니아 곰베 국립공원에서 60년 넘게 침팬지를 연구하며 동물도 감정과 도구 제작 능력이 있음을 최초로 밝혔으며, 뿌리와 새싹(Roots & Shoots) 운동으로 전 세계 청소년 환경 운동을 이끌고 있습니다.',
     stages: [
       {
@@ -859,6 +887,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'gombe_jungle',
         illustrationKey: 'goodall_binoculars',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Jane_Goodall_with_Flint_1960s.jpg/480px-Jane_Goodall_with_Flint_1960s.jpg',
+        realPhotoSearchQuery: 'Jane Goodall Gombe chimpanzee',
         realPhotoDescription: '곰베 숲에서 아기 침팬지 플린트와 교감하는 젊은 날의 제인 구달',
         funFact: '당시 영국 정부는 젊은 여성이 혼자 정글에 가는 것을 허락하지 않아 어머니 반(Vanne)이 첫 몇 달 동안 곰베 숲에 동행해 주었어요.',
         choices: [
@@ -892,6 +921,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'chimpanzee_tool',
         illustrationKey: 'goodall_chimp_tool',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Chimpanzee_using_stick_tool.jpg/480px-Chimpanzee_using_stick_tool.jpg',
+        realPhotoSearchQuery: 'chimpanzee termite fishing tool Gombe',
         realPhotoDescription: '나뭇가지 도구로 흰개미를 낚아 먹는 야생 침팬지의 모습',
         funFact: '제인의 스승 루이스 리키 박사는 이 발견 보고를 받고 "우리는 이제 인간의 정의를 바꿔야 한다"는 명언을 남겼어요.',
         choices: [
@@ -925,6 +955,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'roots_and_shoots',
         illustrationKey: 'goodall_roots',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Jane_Goodall_Roots_%26_Shoots.jpg/480px-Jane_Goodall_Roots_%26_Shoots.jpg',
+        realPhotoSearchQuery: 'Jane Goodall Roots Shoots',
         realPhotoDescription: '전 세계 100여 개국 청소년들과 함께하는 \'뿌리와 새싹(Roots & Shoots)\' 환경 프로그램',
         funFact: '제인 구달은 90세가 넘은 지금도 1년에 300일 이상 전 세계를 돌며 강연과 희망의 메시지를 전하고 있어요.',
         choices: [
@@ -968,6 +999,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#DBEAFE',
     avatarIcon: '🤝',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Helen_KellerA.jpg/440px-Helen_KellerA.jpg',
+    photoSearchQuery: 'Helen Keller portrait photograph',
     summary: '어린 시절 뇌수막염으로 시각과 청각을 모두 잃었으나 앤 설리번 선생님의 헌신적인 지도로 언어를 터득하고, 시청각 중복장애인 최초로 하버드 대학교(래드클리프)를 우등 졸업하며 전 세계 장애인 인권을 위해 투쟁했습니다.',
     stages: [
       {
@@ -979,6 +1011,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'water_pump',
         illustrationKey: 'keller_water_pump',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Helen_Keller_Anne_Sullivan_1898.jpg/440px-Helen_Keller_Anne_Sullivan_1898.jpg',
+        realPhotoSearchQuery: 'Helen Keller Anne Sullivan 1888',
         realPhotoDescription: '1898년 평생의 스승 앤 설리번과 함께 책을 읽는 헬렌 켈러',
         funFact: '헬렌 켈러는 물(WATER)이라는 단어를 깨달은 바로 그날 하루 만에 30개의 새로운 단어를 배웠어요.',
         choices: [
@@ -1012,6 +1045,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'radcliffe_college',
         illustrationKey: 'keller_radcliffe',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Helen_Keller_with_braille.jpg/440px-Helen_Keller_with_braille.jpg',
+        realPhotoSearchQuery: 'Helen Keller Radcliffe 1904',
         realPhotoDescription: '점자 타자기와 점자책으로 집필 활동을 하는 헬렌 켈러',
         funFact: '헬렌 켈러는 영어뿐 아니라 프랑스어, 독일어, 그리스어, 라틴어 등 5개 국어를 능숙하게 구사했어요.',
         choices: [
@@ -1045,6 +1079,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'speech_hall_peace',
         illustrationKey: 'keller_peace_speech',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Helen_Keller_speaking.jpg/480px-Helen_Keller_speaking.jpg',
+        realPhotoSearchQuery: 'Helen Keller speaking lecture',
         realPhotoDescription: '전 세계 시각장애인 복지 증진을 위해 열정적으로 강연하는 헬렌 켈러',
         funFact: '헬렌 켈러는 한국에도 방문해 전쟁 고아들과 맹아학교 학생들을 따뜻하게 안아주었어요.',
         choices: [
@@ -1088,6 +1123,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#CCFBF1',
     avatarIcon: '🇰🇷',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Kim_Koo_portrait.jpg/440px-Kim_Koo_portrait.jpg',
+    photoSearchQuery: 'Kim Gu Korea portrait',
     summary: '상하이 대한민국 임시정부를 27년간 끝까지 지켜내고 한인애국단을 조직하여 윤봉길·이봉창 의사의 의거를 이끌었으며, 해방 후 완전한 자주독립과 높은 문화의 힘을 지닌 나라를 꿈꾸었습니다.',
     stages: [
       {
@@ -1099,6 +1135,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'shanghai_provisional',
         illustrationKey: 'kimgu_shanghai',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Provisional_Government_of_the_Republic_of_Korea_1919.jpg/500px-Provisional_Government_of_the_Republic_of_Korea_1919.jpg',
+        realPhotoSearchQuery: 'Korean Provisional Government Shanghai 1919',
         realPhotoDescription: '1919년 상하이 대한민국 임시정부 요인들의 역사적 기념사진',
         funFact: '‘백범(白凡)’이라는 호는 가장 낮은 신분인 백정(白)과 평범한 범부(凡)까지 모두 애국심을 갖기를 바라는 뜻에서 스스로 지은 이름이에요.',
         choices: [
@@ -1132,6 +1169,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'watch_exchange',
         illustrationKey: 'kimgu_watch',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Yun_Bong-gil_and_Kim_Koo_watches.jpg/480px-Yun_Bong-gil_and_Kim_Koo_watches.jpg',
+        realPhotoSearchQuery: 'Kim Gu Yun Bong-gil',
         realPhotoDescription: '윤봉길 의사와 김구 주석이 거사 직전 맞바꾼 역사적 회중시계 (등록문화재)',
         funFact: '윤봉길 의사의 의거는 중국 장제스 총통이 "중국의 100만 대군도 해내지 못한 일을 조선의 한 청년이 해냈다"며 임시정부를 전폭 지원하는 결정적 계기가 되었어요.',
         choices: [
@@ -1165,6 +1203,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'baekbeom_korea',
         illustrationKey: 'kimgu_culture',
         realPhotoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Baekbeom_Ilji_Original.jpg/480px-Baekbeom_Ilji_Original.jpg',
+        realPhotoSearchQuery: 'Baekbeom Ilji Kim Gu manuscript',
         realPhotoDescription: '백범일지(白凡逸志) 친필 원본 (보물)',
         funFact: '오늘날 K-팝, K-드라마 등 한국의 문화가 전 세계를 휩쓰는 모습을 보며 김구 선생의 <나의 소원> 혜안이 다시금 큰 주목을 받고 있어요.',
         choices: [
@@ -1208,6 +1247,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#DBEAFE',
     avatarIcon: '⚽',
     photoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Son%20Heung-Min.jpg',
+    photoSearchQuery: 'Son Heung-min football portrait',
     summary: '춘천에서 아버지 손웅정 감독 밑에서 혹독한 기본기 훈련을 거쳐 독일 분데스리가를 거쳐 잉글랜드 프리미어리그(EPL)에서 아시아 선수 최초 득점왕(골든부트)을 수상한 월드클래스 축구 스타입니다.',
     stages: [
       {
@@ -1219,6 +1259,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'soccer_grass_field',
         illustrationKey: 'son_training',
         realPhotoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Son%20Heung-Min.jpg',
+        realPhotoSearchQuery: 'Son Heung-min 2011 Hamburger SV',
         realPhotoDescription: '유소년 시절 혹독한 기본기 훈련을 받던 손흥민',
         funFact: '손흥민은 양발을 모두 완벽하게 쓰기 위해 축구 양말이나 바지를 입을 때도 늘 왼발부터 넣는 습관을 들였어요.',
         choices: [
@@ -1252,6 +1293,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'germany_stadium',
         illustrationKey: 'son_hamburg',
         realPhotoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Son%20Heung-Min.jpg',
+        realPhotoSearchQuery: 'Son Heung-min Hamburger SV 2012',
         realPhotoDescription: '독일 함부르크 SV 시절 18세 나이로 분데스리가 데뷔골을 넣은 손흥민',
         funFact: '손흥민은 독일어를 빨리 배우기 위해 매일 독일 만화영화를 보며 입술 모양을 따라 연습했어요.',
         choices: [
@@ -1285,6 +1327,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'epl_golden_boot',
         illustrationKey: 'son_golden_boot',
         realPhotoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/PremierLeagueGoldenBoot.png',
+        realPhotoSearchQuery: 'Son Heung-min Golden Boot 2022',
         realPhotoDescription: '2021-2022 시즌 아시아 선수 최초 EPL 골든부트(득점왕 트로피)를 들어 올린 손흥민',
         funFact: '손흥민은 23골 전골을 페널티킥 없이 순수 필드골(오른발 11골, 왼발 12골)로만 기록하는 경이로운 기록을 세웠어요.',
         choices: [
@@ -1328,6 +1371,7 @@ export const FIGURES_DATA: Figure[] = [
     accentColor: '#D1FAE5',
     avatarIcon: '🎤',
     photoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Yoo%20Jae-suk.jpg',
+    photoSearchQuery: 'Yoo Jae-suk portrait',
     summary: '10년의 긴 무명 시절을 눈물과 겸손으로 버텨내고, 무한도전·유 퀴즈 온 더 블럭·런닝맨 등을 이끌며 지상파 3사 및 백상예술대상에서 통산 19회 대상을 수상한 대한민국 최고의 국민 MC입니다.',
     stages: [
       {
@@ -1339,6 +1383,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'kbs_comedy_stage',
         illustrationKey: 'yoo_debut',
         realPhotoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Yoo%20Jae-suk%20in%20September%202013%2001.jpg',
+        realPhotoSearchQuery: 'Yoo Jae-suk 2013',
         realPhotoDescription: '1990년대 신인 개그맨 시절의 유재석',
         funFact: '유재석은 메뚜기 탈을 쓰고 리포터를 하던 무명 시절, 매일 밤 "한 번만 기회를 주시면 평생 겸손하겠다"고 눈물로 기도했어요.',
         choices: [
@@ -1372,6 +1417,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'infinite_challenge_studio',
         illustrationKey: 'yoo_muhandaojeon',
         realPhotoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/140807%20%EC%9C%A0%EC%9E%AC%EC%84%9D%2001.jpg',
+        realPhotoSearchQuery: 'Yoo Jae-suk 2014',
         realPhotoDescription: '대한민국 최고 예능 <무한도전>을 이끌던 국민 MC 유재석',
         funFact: '유재석은 무한도전 추격전과 스포츠 장기 프로젝트를 위해 평생 좋아하던 담배를 끊고 매일 2시간씩 헬스 트레이닝을 했어요.',
         choices: [
@@ -1405,6 +1451,7 @@ export const FIGURES_DATA: Figure[] = [
         visualTheme: 'youquiz_street',
         illustrationKey: 'yoo_youquiz',
         realPhotoUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Yoo%20Jae-suk.jpg',
+        realPhotoSearchQuery: 'Yoo Jae-suk 2026',
         realPhotoDescription: '방송 연예대상에서 수많은 대상 트로피를 수상한 유재석',
         funFact: '유재석은 <유 퀴즈> 녹화 중 비가 오면 스태프와 시민들에게 우산을 먼저 씌워주고 자신은 비를 맞는 따뜻한 태도로 감동을 주었어요.',
         choices: [

@@ -23,6 +23,7 @@ export interface LifeStage {
   visualTheme: string;
   illustrationKey: string;
   realPhotoUrl?: string;
+  realPhotoSearchQuery?: string;
   realPhotoDescription?: string;
   soundCue?: string;
   choices: Choice[];
@@ -44,6 +45,7 @@ export interface Figure {
   accentColor: string;
   avatarIcon: string;
   photoUrl?: string;
+  photoSearchQuery?: string;
   summary: string;
   stages: LifeStage[];
 }

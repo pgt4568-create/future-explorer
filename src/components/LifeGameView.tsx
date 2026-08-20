@@ -184,9 +184,9 @@ export const LifeGameView: React.FC<LifeGameViewProps> = ({
             illustrationKey={stage.illustrationKey}
             figureId={figure.id}
             stageNumber={stage.stageNumber}
-            realPhotoUrl={stage.realPhotoUrl || figure.photoUrl}
+            realPhotoUrl={stage.realPhotoUrl}
+            realPhotoSearchQuery={stage.realPhotoSearchQuery}
             realPhotoDescription={stage.realPhotoDescription}
-            fallbackPhotoUrl={figure.photoUrl}
           />
         </div>
 

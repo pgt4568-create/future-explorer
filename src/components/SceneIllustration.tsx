@@ -1,68 +1,25 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Image as ImageIcon, Sparkles, BookOpen, ZoomIn, Film, ExternalLink, RefreshCw, X } from 'lucide-react';
-import { getSafeImageUrl } from '../utils/imageUrl';
+import { Image as ImageIcon, Sparkles, ZoomIn, Film, ExternalLink, X } from 'lucide-react';
+import { useResolvedImage } from './WikimediaImage';
 
 interface SceneIllustrationProps {
   illustrationKey: string;
   figureId: string;
   stageNumber: number;
   realPhotoUrl?: string;
+  realPhotoSearchQuery?: string;
   realPhotoDescription?: string;
-  fallbackPhotoUrl?: string;
 }
 
-// Subcomponent for loading and rendering historical photo with robust fallbacks
 const HistoricalPhotoViewer: React.FC<{
   url?: string;
-  fallbackUrl?: string;
+  searchQuery?: string;
   description?: string;
   figureId: string;
-  onZoom: () => void;
-  compact?: boolean;
-}> = ({ url, fallbackUrl, description, figureId, onZoom, compact = false }) => {
-  const [imgStatus, setImgStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
-  const [proxyIndex, setProxyIndex] = useState<number>(0);
-
-  const buildCandidates = React.useCallback((raw?: string) => {
-    if (!raw) return [] as string[];
-    const cleanUrl = raw.trim();
-    if (!cleanUrl) return [] as string[];
-    if (cleanUrl.startsWith('data:') || cleanUrl.startsWith('blob:')) return [cleanUrl];
-
-    const candidates: string[] = [cleanUrl];
-    if (cleanUrl.includes('wikimedia.org') || cleanUrl.includes('wikipedia.org')) {
-      const thumbMatch = cleanUrl.match(/\/commons\/thumb\/[a-f0-9]\/[a-f0-9]{2}\/([^/]+)\//i);
-      const fileName = thumbMatch?.[1];
-      if (fileName) {
-        candidates.push(`https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(fileName)}`);
-      }
-    }
-    candidates.push(`https://wsrv.nl/?url=${encodeURIComponent(cleanUrl)}&w=800&fit=contain&output=webp&q=85`);
-    return candidates;
-  }, []);
-
-  // Try the stage photo first, then a verified figure portrait, then CDN proxy variants.
-  const candidateUrls = React.useMemo(() => {
-    return Array.from(new Set([
-      ...buildCandidates(url),
-      ...buildCandidates(fallbackUrl),
-    ]));
-  }, [url, fallbackUrl, buildCandidates]);
-
-  // Reset when URL changes
-  React.useEffect(() => {
-    setImgStatus('loading');
-    setProxyIndex(0);
-  }, [url, fallbackUrl]);
-
-  const handleImageError = () => {
-    if (proxyIndex + 1 < candidateUrls.length) {
-      setProxyIndex(prev => prev + 1);
-    } else {
-      setImgStatus('error');
-    }
-  };
+  onZoom: (resolvedSrc: string, sourcePage?: string, sourceTitle?: string) => void;
+}> = ({ url, searchQuery, description, figureId, onZoom }) => {
+  const image = useResolvedImage({ url, searchQuery, width: 1000 });
 
   const getFigureEmoji = (id: string) => {
     switch (id) {
@@ -72,46 +29,41 @@ const HistoricalPhotoViewer: React.FC<{
       case 'walt_disney': return '🏰';
       case 'thomas_edison': return '💡';
       case 'jane_goodall': return '🌿';
-      case 'steve_jobs': return '📱';
-      case 'son_heungmin': return '⚽';
-      case 'bang_jeonghwan': return '🎈';
       case 'helen_keller': return '🌟';
+      case 'kim_gu': return '🇰🇷';
+      case 'son_heungmin': return '⚽';
+      case 'yoo_jaeseok': return '🎤';
       default: return '📜';
     }
   };
 
-  const activeSrc = candidateUrls[proxyIndex] || '';
-
   return (
     <div className="relative w-full h-full bg-slate-950 flex flex-col items-center justify-center p-3 group overflow-hidden select-none">
-      {/* Loading state skeleton */}
-      {imgStatus === 'loading' && (
+      {image.status === 'loading' && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 z-10 p-4">
           <div className="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin mb-2" />
-          <p className="text-xs text-slate-300 font-bold animate-pulse">역사 실제 사진 불러오는 중...</p>
+          <p className="text-xs text-slate-300 font-bold animate-pulse">상황에 맞는 실제 사진 찾는 중...</p>
         </div>
       )}
 
-      {/* Actual Image */}
-      {imgStatus !== 'error' && activeSrc && (
+      {image.status !== 'error' && image.src && (
         <div className="relative w-full h-full flex items-center justify-center">
           <img
-            key={activeSrc}
-            src={activeSrc}
-            alt={description || '역사 사진'}
+            key={image.src}
+            src={image.src}
+            alt={description || '역사 실제 사진'}
             referrerPolicy="no-referrer"
-            onLoad={() => setImgStatus('loaded')}
-            onError={handleImageError}
-            className={`max-h-56 sm:max-h-64 max-w-full object-contain rounded-xl shadow-md transition-all duration-300 group-hover:scale-102 cursor-pointer ${
-              imgStatus === 'loaded' ? 'opacity-100' : 'opacity-0'
+            onLoad={image.onLoad}
+            onError={image.onError}
+            className={`max-h-56 sm:max-h-64 max-w-full object-contain rounded-xl shadow-md transition-all duration-300 group-hover:scale-[1.02] cursor-pointer ${
+              image.status === 'loaded' ? 'opacity-100' : 'opacity-0'
             }`}
-            onClick={onZoom}
+            onClick={() => onZoom(image.src, image.sourcePage, image.sourceTitle)}
           />
 
-          {/* Quick Zoom Button Overlay */}
-          {imgStatus === 'loaded' && (
+          {image.status === 'loaded' && (
             <button
-              onClick={onZoom}
+              onClick={() => onZoom(image.src, image.sourcePage, image.sourceTitle)}
               className="absolute top-2 right-2 p-1.5 bg-black/70 hover:bg-indigo-600 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-md cursor-pointer flex items-center gap-1 text-xs font-bold"
               title="사진 크게 보기"
             >
@@ -122,34 +74,22 @@ const HistoricalPhotoViewer: React.FC<{
         </div>
       )}
 
-      {/* Fallback Rich Historical Card if image is unavailable */}
-      {imgStatus === 'error' && (
+      {image.status === 'error' && (
         <div className="w-full h-full bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 p-4 rounded-xl border-2 border-indigo-500/30 flex flex-col items-center justify-center text-center">
           <div className="w-14 h-14 rounded-2xl bg-indigo-900/60 border border-indigo-400/40 flex items-center justify-center text-3xl shadow-inner mb-2">
             {getFigureEmoji(figureId)}
           </div>
           <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-black mb-1">
-            🏛️ 국립박물관 소장 역사 기록
+            📚 관련 역사 자료
           </span>
           <h4 className="text-xs sm:text-sm font-black text-white line-clamp-2 max-w-xs">
-            {description || '역사 속 실제 모습'}
+            {description || '이 장면과 관련된 실제 사진'}
           </h4>
-          {url && (
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-xs font-bold rounded-xl transition-all shadow-md"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              박물관 사진 보기
-            </a>
-          )}
+          <p className="text-[10px] text-slate-400 mt-2">사진을 찾지 못해 애니메이션 자료를 함께 제공합니다.</p>
         </div>
       )}
 
-      {/* Bottom Description Pill */}
-      {description && imgStatus === 'loaded' && (
+      {description && image.status === 'loaded' && (
         <div className="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-black text-amber-200 truncate text-center shadow-lg pointer-events-none">
           📷 {description}
         </div>
@@ -163,27 +103,25 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
   figureId,
   stageNumber,
   realPhotoUrl,
+  realPhotoSearchQuery,
   realPhotoDescription,
-  fallbackPhotoUrl,
 }) => {
   const [viewMode, setViewMode] = useState<'both' | 'photo' | 'anim'>('both');
-  const [isPhotoZoomed, setIsPhotoZoomed] = useState<boolean>(false);
+  const [zoomData, setZoomData] = useState<{ src: string; sourcePage?: string; sourceTitle?: string } | null>(null);
+  const hasPhoto = Boolean(realPhotoUrl || realPhotoSearchQuery);
 
   return (
     <div
       id={`scene-illustration-${illustrationKey}`}
       className="relative w-full rounded-2xl overflow-hidden shadow-lg border-2 border-indigo-500/20 bg-slate-900"
     >
-      {/* Visual Mode Selector Buttons */}
       <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 bg-black/60 backdrop-blur-md p-1 rounded-xl border border-white/20 shadow-md">
-        {realPhotoUrl && (
+        {hasPhoto && (
           <>
             <button
               onClick={() => setViewMode('both')}
               className={`px-2.5 py-1 rounded-lg text-xs font-black transition-all flex items-center gap-1 cursor-pointer ${
-                viewMode === 'both'
-                  ? 'bg-indigo-600 text-white shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-white/10'
+                viewMode === 'both' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:text-white hover:bg-white/10'
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
@@ -192,9 +130,7 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
             <button
               onClick={() => setViewMode('photo')}
               className={`px-2.5 py-1 rounded-lg text-xs font-black transition-all flex items-center gap-1 cursor-pointer ${
-                viewMode === 'photo'
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-white/10'
+                viewMode === 'photo' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-300 hover:text-white hover:bg-white/10'
               }`}
             >
               <ImageIcon className="w-3.5 h-3.5" />
@@ -205,9 +141,7 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
         <button
           onClick={() => setViewMode('anim')}
           className={`px-2.5 py-1 rounded-lg text-xs font-black transition-all flex items-center gap-1 cursor-pointer ${
-            viewMode === 'anim'
-              ? 'bg-amber-600 text-white shadow-sm'
-              : 'text-slate-300 hover:text-white hover:bg-white/10'
+            viewMode === 'anim' ? 'bg-amber-600 text-white shadow-sm' : 'text-slate-300 hover:text-white hover:bg-white/10'
           }`}
         >
           <Film className="w-3.5 h-3.5" />
@@ -215,64 +149,54 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
         </button>
       </div>
 
-      {/* Stage Badge */}
       <div className="absolute top-3 left-3 z-20 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/20 text-xs font-extrabold text-amber-300 flex items-center gap-1.5 shadow-md">
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
         STAGE {stageNumber}
       </div>
 
-      {/* Visual Content Box */}
       <div className="w-full h-64 sm:h-72 md:h-80 relative flex items-center justify-center overflow-hidden">
-        {/* VIEW 1: DUAL (BOTH) MODE */}
-        {viewMode === 'both' && realPhotoUrl && (
+        {viewMode === 'both' && hasPhoto && (
           <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-            {/* Real Photo Half */}
             <HistoricalPhotoViewer
               url={realPhotoUrl}
-              fallbackUrl={fallbackPhotoUrl}
+              searchQuery={realPhotoSearchQuery}
               description={realPhotoDescription}
               figureId={figureId}
-              onZoom={() => setIsPhotoZoomed(true)}
-              compact
+              onZoom={(src, sourcePage, sourceTitle) => setZoomData({ src, sourcePage, sourceTitle })}
             />
-
-            {/* Animation Scene Half */}
             <div className="relative h-full flex items-center justify-center bg-gradient-to-b from-slate-900 via-slate-800 to-indigo-950">
               {renderScene(illustrationKey, figureId, stageNumber)}
             </div>
           </div>
         )}
 
-        {/* VIEW 2: PHOTO ONLY MODE */}
-        {viewMode === 'photo' && realPhotoUrl && (
+        {viewMode === 'photo' && hasPhoto && (
           <div className="w-full h-full bg-slate-950 flex items-center justify-center relative">
             <HistoricalPhotoViewer
               url={realPhotoUrl}
-              fallbackUrl={fallbackPhotoUrl}
+              searchQuery={realPhotoSearchQuery}
               description={realPhotoDescription}
               figureId={figureId}
-              onZoom={() => setIsPhotoZoomed(true)}
+              onZoom={(src, sourcePage, sourceTitle) => setZoomData({ src, sourcePage, sourceTitle })}
             />
           </div>
         )}
 
-        {/* VIEW 3: ANIMATION ONLY MODE */}
-        {(viewMode === 'anim' || !realPhotoUrl) && (
+        {(viewMode === 'anim' || !hasPhoto) && (
           <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-b from-slate-900 via-slate-800 to-indigo-950">
             {renderScene(illustrationKey, figureId, stageNumber)}
           </div>
         )}
       </div>
 
-      {/* Full-screen Zoom Modal */}
       <AnimatePresence>
-        {isPhotoZoomed && realPhotoUrl && (
+        {zoomData && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6"
-            onClick={() => setIsPhotoZoomed(false)}
+            onClick={() => setZoomData(null)}
           >
             <motion.div
               initial={{ scale: 0.9 }}
@@ -281,33 +205,34 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
               className="relative max-w-4xl max-h-[85vh] bg-slate-900 rounded-3xl p-4 border-2 border-indigo-500/40 shadow-2xl flex flex-col items-center"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
-                onClick={() => setIsPhotoZoomed(false)}
-                className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors cursor-pointer"
+                onClick={() => setZoomData(null)}
+                className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors cursor-pointer z-10"
               >
                 <X className="w-5 h-5" />
               </button>
-
-              {/* Zoomed Image */}
               <img
-                src={getSafeImageUrl(realPhotoUrl, 1200)}
+                src={zoomData.src}
                 alt={realPhotoDescription || '실제 사진'}
                 referrerPolicy="no-referrer"
-                    className="max-h-[65vh] w-auto object-contain rounded-2xl shadow-xl"
+                className="max-h-[65vh] w-auto object-contain rounded-2xl shadow-xl"
               />
-
-              {/* Description & Source link */}
-              {realPhotoDescription && (
-                <div className="mt-4 text-center">
-                  <div className="text-sm sm:text-base font-black text-amber-200">
-                    📜 {realPhotoDescription}
-                  </div>
-                  <div className="text-xs text-slate-400 mt-1">
-                    위인 인생게임 역사 아카이브 자료
-                  </div>
-                </div>
-              )}
+              <div className="mt-4 text-center max-w-2xl">
+                {realPhotoDescription && (
+                  <div className="text-sm sm:text-base font-black text-amber-200">📜 {realPhotoDescription}</div>
+                )}
+                {zoomData.sourceTitle && <div className="text-xs text-slate-400 mt-1">Wikimedia Commons: {zoomData.sourceTitle}</div>}
+                {zoomData.sourcePage && (
+                  <a
+                    href={zoomData.sourcePage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-indigo-300 hover:text-indigo-200"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" /> 원본·라이선스 확인
+                  </a>
+                )}
+              </div>
             </motion.div>
           </motion.div>
         )}
