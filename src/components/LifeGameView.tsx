@@ -185,7 +185,6 @@ export const LifeGameView: React.FC<LifeGameViewProps> = ({
             figureId={figure.id}
             stageNumber={stage.stageNumber}
             realPhotoUrl={stage.realPhotoUrl}
-            realPhotoSearchQuery={stage.realPhotoSearchQuery}
             realPhotoDescription={stage.realPhotoDescription}
           />
         </div>

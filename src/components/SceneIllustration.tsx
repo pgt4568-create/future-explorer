@@ -8,18 +8,16 @@ interface SceneIllustrationProps {
   figureId: string;
   stageNumber: number;
   realPhotoUrl?: string;
-  realPhotoSearchQuery?: string;
   realPhotoDescription?: string;
 }
 
 const HistoricalPhotoViewer: React.FC<{
   url?: string;
-  searchQuery?: string;
   description?: string;
   figureId: string;
   onZoom: (resolvedSrc: string, sourcePage?: string, sourceTitle?: string) => void;
-}> = ({ url, searchQuery, description, figureId, onZoom }) => {
-  const image = useResolvedImage({ url, searchQuery, width: 1000 });
+}> = ({ url, description, figureId, onZoom }) => {
+  const image = useResolvedImage({ url });
 
   const getFigureEmoji = (id: string) => {
     switch (id) {
@@ -42,7 +40,7 @@ const HistoricalPhotoViewer: React.FC<{
       {image.status === 'loading' && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 z-10 p-4">
           <div className="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin mb-2" />
-          <p className="text-xs text-slate-300 font-bold animate-pulse">상황에 맞는 실제 사진 찾는 중...</p>
+          <p className="text-xs text-slate-300 font-bold animate-pulse">검증된 역사 자료 불러오는 중...</p>
         </div>
       )}
 
@@ -90,7 +88,7 @@ const HistoricalPhotoViewer: React.FC<{
       )}
 
       {description && image.status === 'loaded' && (
-        <div className="absolute bottom-2 left-2 right-2 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/15 text-[11px] font-black text-amber-200 truncate text-center shadow-lg pointer-events-none">
+        <div className="absolute bottom-2 left-2 right-2 bg-black/85 backdrop-blur-md px-2.5 py-1.5 rounded-lg border border-white/15 text-[10px] sm:text-[11px] font-bold text-amber-100 text-center shadow-lg pointer-events-none leading-snug">
           📷 {description}
         </div>
       )}
@@ -103,12 +101,11 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
   figureId,
   stageNumber,
   realPhotoUrl,
-  realPhotoSearchQuery,
   realPhotoDescription,
 }) => {
   const [viewMode, setViewMode] = useState<'both' | 'photo' | 'anim'>('both');
   const [zoomData, setZoomData] = useState<{ src: string; sourcePage?: string; sourceTitle?: string } | null>(null);
-  const hasPhoto = Boolean(realPhotoUrl || realPhotoSearchQuery);
+  const hasPhoto = Boolean(realPhotoUrl);
 
   return (
     <div
@@ -159,7 +156,6 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
           <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
             <HistoricalPhotoViewer
               url={realPhotoUrl}
-              searchQuery={realPhotoSearchQuery}
               description={realPhotoDescription}
               figureId={figureId}
               onZoom={(src, sourcePage, sourceTitle) => setZoomData({ src, sourcePage, sourceTitle })}
@@ -174,7 +170,6 @@ export const SceneIllustration: React.FC<SceneIllustrationProps> = ({
           <div className="w-full h-full bg-slate-950 flex items-center justify-center relative">
             <HistoricalPhotoViewer
               url={realPhotoUrl}
-              searchQuery={realPhotoSearchQuery}
               description={realPhotoDescription}
               figureId={figureId}
               onZoom={(src, sourcePage, sourceTitle) => setZoomData({ src, sourcePage, sourceTitle })}

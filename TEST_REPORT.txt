@@ -1,0 +1,20 @@
+위인과 함께하는 나의 미래 탐험대 - 최종 정적 점검 결과
+
+1. TS/TSX 문법 검사: 19개 파일 / 오류 0
+2. 인물 데이터: 10명
+3. 인생게임 단계: 총 37단계
+4. 선택지: 단계당 3개, 총 111개
+5. 정답: 단계당 정확히 1개
+6. 사진 매핑: 대표 10 + 단계 37 = 총 47개
+7. 사진 파일 중복: 0개
+8. 실시간 Wikimedia 검색/랜덤 사진 대체: 사용 안 함
+9. 사용자 지적 회귀 방지 검사 포함:
+   - 김구 대표사진 = Kim Gu in 1949.jpg
+   - 마리 퀴리 파리 첫 단계 = Maria Skłodowska arrives in Paris, 1891.jpg
+   - 마리 퀴리 1911 노벨상 = Marie Curie (Nobel-Chem).jpg
+   - 세종 장영실 단계 = Jang Youngsil 1.jpg
+   - 세종 공법 단계 = 세종실록 표지.gif
+   - 제인 구달 곰베 단계 = LT0230-02 (48539452661).jpg
+   - 헬렌 켈러 세계 순회 = Helen Keller visit to Japan in 1948 01.jpg
+   - 디즈니 백설공주 = Walt Disney Snow white 1937 trailer screenshot (13).jpg
+10. GitHub Actions 배포 시 PHOTO_AUDIT_NETWORK=1로 47개 Wikimedia Commons 파일의 실제 존재와 이미지 URL 제공 여부를 모두 검사한 뒤에만 빌드/배포하도록 설정함.

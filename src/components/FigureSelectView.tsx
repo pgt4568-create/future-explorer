@@ -146,7 +146,6 @@ export const FigureSelectView: React.FC<FigureSelectViewProps> = ({
                 <div className="flex items-start justify-between mb-3.5">
                   <FigurePortrait
                     url={figure.photoUrl}
-                    searchQuery={figure.photoSearchQuery}
                     name={figure.name}
                     emoji={figure.avatarIcon}
                     className="w-16 h-16 rounded-2xl shadow-md border-2 border-white dark:border-slate-700"

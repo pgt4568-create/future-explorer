@@ -1,83 +1,80 @@
 import React from 'react';
-import { searchWikimediaImage, directCandidates } from '../utils/wikimedia';
 
 interface UseResolvedImageOptions {
   url?: string;
-  searchQuery?: string;
-  width?: number;
 }
 
-export function useResolvedImage({ url, searchQuery, width = 1000 }: UseResolvedImageOptions) {
-  const [src, setSrc] = React.useState('');
-  const [sourcePage, setSourcePage] = React.useState<string | undefined>();
-  const [sourceTitle, setSourceTitle] = React.useState<string | undefined>();
-  const [status, setStatus] = React.useState<'loading' | 'loaded' | 'error'>('loading');
-  const [rawCandidates, setRawCandidates] = React.useState<string[]>([]);
-  const [rawIndex, setRawIndex] = React.useState(0);
+function buildCandidates(raw?: string): string[] {
+  if (!raw) return [];
+  const clean = raw.trim();
+  if (!clean) return [];
+
+  const candidates = [clean];
+  // Commons Special:FilePath의 thumbnail 파라미터가 일시적으로 실패할 경우
+  // 같은 "확정 파일"의 원본으로만 재시도합니다. 다른 사진/검색 결과로 대체하지 않습니다.
+  if (clean.includes('/wiki/Special:FilePath/') && clean.includes('?')) {
+    candidates.push(clean.split('?')[0]);
+  }
+  return Array.from(new Set(candidates));
+}
+
+function commonsMetadata(raw?: string) {
+  if (!raw) return {};
+  try {
+    const url = new URL(raw);
+    const marker = '/wiki/Special:FilePath/';
+    const idx = url.pathname.indexOf(marker);
+    if (idx === -1) return {};
+    const encoded = url.pathname.slice(idx + marker.length);
+    const title = decodeURIComponent(encoded);
+    return {
+      sourceTitle: title,
+      sourcePage: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(title)}`,
+    };
+  } catch {
+    return {};
+  }
+}
+
+export function useResolvedImage({ url }: UseResolvedImageOptions) {
+  const candidates = React.useMemo(() => buildCandidates(url), [url]);
+  const metadata = React.useMemo(() => commonsMetadata(url), [url]);
+  const [candidateIndex, setCandidateIndex] = React.useState(0);
+  const [status, setStatus] = React.useState<'loading' | 'loaded' | 'error'>(
+    candidates.length ? 'loading' : 'error',
+  );
 
   React.useEffect(() => {
-    let cancelled = false;
-    setStatus('loading');
-    setSrc('');
-    setSourcePage(undefined);
-    setSourceTitle(undefined);
-    setRawCandidates(directCandidates(url));
-    setRawIndex(0);
+    setCandidateIndex(0);
+    setStatus(candidates.length ? 'loading' : 'error');
+  }, [candidates]);
 
-    const resolve = async () => {
-      // Search first. The API only returns URLs for files that actually exist,
-      // which avoids the broken hard-coded Wikimedia filenames that caused 404s.
-      if (searchQuery) {
-        try {
-          const found = await searchWikimediaImage(searchQuery, width);
-          if (!cancelled && found?.url) {
-            setSrc(found.url);
-            setSourcePage(found.pageUrl);
-            setSourceTitle(found.title);
-            return;
-          }
-        } catch {
-          // fall through to the configured direct URL
-        }
-      }
-
-      const fallbacks = directCandidates(url);
-      if (!cancelled && fallbacks[0]) {
-        setRawCandidates(fallbacks);
-        setRawIndex(0);
-        setSrc(fallbacks[0]);
-      } else if (!cancelled) {
-        setStatus('error');
-      }
-    };
-
-    resolve();
-    return () => {
-      cancelled = true;
-    };
-  }, [url, searchQuery, width]);
-
+  const src = candidates[candidateIndex] || '';
   const onLoad = React.useCallback(() => setStatus('loaded'), []);
   const onError = React.useCallback(() => {
-    // If an API result ever becomes unavailable, try the explicitly configured URL.
-    const fallbacks = rawCandidates.length ? rawCandidates : directCandidates(url);
-    const current = fallbacks.indexOf(src);
-    const next = current >= 0 ? current + 1 : rawIndex;
-    if (next < fallbacks.length) {
-      setRawIndex(next + 1);
-      setStatus('loading');
-      setSrc(fallbacks[next]);
-    } else {
+    setCandidateIndex((current) => {
+      const next = current + 1;
+      if (next < candidates.length) {
+        setStatus('loading');
+        return next;
+      }
       setStatus('error');
-    }
-  }, [rawCandidates, rawIndex, src, url]);
+      return current;
+    });
+  }, [candidates.length]);
 
-  return { src, sourcePage, sourceTitle, status, onLoad, onError };
+  return {
+    src,
+    sourcePage: metadata.sourcePage,
+    sourceTitle: metadata.sourceTitle,
+    status,
+    onLoad,
+    onError,
+  };
 }
 
 interface FigurePortraitProps {
   url?: string;
-  searchQuery?: string;
   name: string;
   emoji: string;
   className?: string;
@@ -85,12 +82,11 @@ interface FigurePortraitProps {
 
 export const FigurePortrait: React.FC<FigurePortraitProps> = ({
   url,
-  searchQuery,
   name,
   emoji,
   className = '',
 }) => {
-  const image = useResolvedImage({ url, searchQuery, width: 500 });
+  const image = useResolvedImage({ url });
 
   if (image.status === 'error' || !image.src) {
     return (
@@ -107,7 +103,7 @@ export const FigurePortrait: React.FC<FigurePortraitProps> = ({
       )}
       <img
         src={image.src}
-        alt={`${name} 실제 사진`}
+        alt={`${name} 실제 인물 사진`}
         referrerPolicy="no-referrer"
         onLoad={image.onLoad}
         onError={image.onError}
