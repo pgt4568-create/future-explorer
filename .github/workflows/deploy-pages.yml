@@ -32,6 +32,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Audit curated Wikimedia photos
+        env:
+          PHOTO_AUDIT_NETWORK: '1'
+        run: npm run audit:photos
+
+      - name: Type check
+        run: npm run lint
+
       - name: Build
         run: npm run build
 
